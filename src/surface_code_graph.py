@@ -4,6 +4,8 @@ from typing import Tuple, List
 from networkx import MultiGraph
 from networkx import nx
 from sympy.combinatorics import Permutation
+import matplotlib.pyplot as plt
+
 
 # from SurfaceCodes.utilites import permlist_to_tuple
 
@@ -177,8 +179,11 @@ class SurfaceCodeGraph(MultiGraph):
             pos = nx.spiral_layout(self.code_graph)
         if layout == 'random':
             pos = nx.random_layout(self.code_graph)
-
-        # white nodes
+        else:
+            raise ValueError(
+                "no layout defined: try one of these: "+
+                "['spring','spectral','planar','shell','circular','spiral','random']")
+            # white nodes
         nx.draw_networkx_nodes(self.code_graph, pos,
                                nodelist=list(self.alpha),
                                node_color='c',
@@ -205,16 +210,16 @@ class SurfaceCodeGraph(MultiGraph):
             '''
             label nodes the cycles of sigma, alpha, and phi
             '''
-            for node in self.alpha_dict:
-                # stuff = self.alpha_dict[node]
-                labels[node] = f'$e$({node})'
-            for node in self.sigma_dict:
-                # something = self.sigma_dict[node]
-                labels[node] = f'$v$({node})'
-            for node in self.phi_dict:
-                # something2 = self.phi_dict[node]
-                labels[node] = f'$f$({node})'
-            nx.draw_networkx_labels(self.code_graph, pos, labels, font_size=12)
+        for node in self.alpha_dict:
+        # stuff = self.alpha_dict[node]
+            labels[node] = f'$e$({node})'
+        for node in self.sigma_dict:
+        # something = self.sigma_dict[node]
+            labels[node] = f'$v$({node})'
+        for node in self.phi_dict:
+        # something2 = self.phi_dict[node]
+            labels[node] = f'$f$({node})'
+        nx.draw_networkx_labels(self.code_graph, pos, labels, font_size=12)
 
         if node_type == 'dict':
             '''
@@ -222,17 +227,17 @@ class SurfaceCodeGraph(MultiGraph):
             qubit indices of surface code
             '''
 
-            for node in self.alpha_dict:
-                # stuff = self.alpha_dict[node]
-                labels[node] = f'$e$({self.alpha_dict[node]})'
-            for node in self.sigma_dict:
-                # something = self.sigma_dict[node]
-                labels[node] = f'$v$({self.sigma_dict[node]})'
-            for node in self.phi_dict:
-                # something2 = self.phi_dict[node]
-                labels[node] = f'$f$({self.phi_dict[node]})'
-            nx.draw_networkx_labels(self.code_graph, pos, labels, font_size=12)
+        for node in self.alpha_dict:
+        # stuff = self.alpha_dict[node]
+            labels[node] = f'$e$({self.alpha_dict[node]})'
+        for node in self.sigma_dict:
+        # something = self.sigma_dict[node]
+            labels[node] = f'$v$({self.sigma_dict[node]})'
+        for node in self.phi_dict:
+        # something2 = self.phi_dict[node]
+            labels[node] = f'$f$({self.phi_dict[node]})'
+        nx.draw_networkx_labels(self.code_graph, pos, labels, font_size=12)
 
-        # plt.axis('off')
+        plt.axis('off')
         # plt.savefig("labels_and_colors.png") # save as png
         plt.show()  # display

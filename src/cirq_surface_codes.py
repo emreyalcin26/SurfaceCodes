@@ -1,11 +1,10 @@
 import cirq
-import networkx as nx
-import numpy as np
-from networkx import MultiGraph
+from typing import Tuple
 from networkx import nx
 
-
 # from qiskit import
+from src import SurfaceCodeGraph
+
 
 class CirqSurfaceCodeCircuit():
 
@@ -53,7 +52,7 @@ class CirqSurfaceCodeCircuit():
 
     def x_measurement(self, qubit):
         """Measure 'qubit' in the X-basis, and store the result in 'cbit'
-        :param qubit, cbit:
+        :param qubit:
         :return None
         """
         self.circuit.append(cirq.H(cirq.NamedQubit(str(qubit))))

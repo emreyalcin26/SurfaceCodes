@@ -1,9 +1,9 @@
 from typing import Tuple
 
 from qiskit.circuit import QuantumCircuit, QuantumRegister, ClassicalRegister
-
-from SurfaceCodes.surface_code_graph import SurfaceCodeGraph
-from SurfaceCodes.utilites import permlist_to_tuple
+import networkx as nx
+from src.surface_code_graph import SurfaceCodeGraph
+# from src.utilites import permlist_to_tuple
 
 
 class SurfaceCodeCircuit(QuantumCircuit):
@@ -28,7 +28,7 @@ class SurfaceCodeCircuit(QuantumCircuit):
         self.cr = ClassicalRegister(len(self.scgraph.code_graph.nodes))
         self.circ = QuantumCircuit(self.qr, self.cr)
 
-        self.node_info = self.scgraph.node_dict 
+        self.node_info = self.scgraph.node_dict
         self.sigma_dict, self.alpha_dict, self.phi_dict = self.node_info
 
         for cycle in self.sigma:
@@ -96,7 +96,6 @@ class SurfaceCodeCircuit(QuantumCircuit):
         for node in coboundary_nodes:
             self.circ.x(self.alpha_dict[node])
 
-
     def X_1_chain(self, edges):
         """
         Pauli product X operator for arbitrary 1-cochain given by
@@ -104,7 +103,6 @@ class SurfaceCodeCircuit(QuantumCircuit):
         """
         for edge in edges:
             self.circ.x(self.alpha_dict[edge])
-
 
     def Z_1_chain(self, edges):
         """
@@ -114,22 +112,21 @@ class SurfaceCodeCircuit(QuantumCircuit):
         for edge in edges:
             self.circ.z(self.alpha_dict[edge])
 
-
-    def draw_graph(self, node_type='', layout = ''):
+    def draw_graph(self, node_type='', layout=''):
         if layout == 'spring':
-            pos=nx.spring_layout(self.scgraph.code_graph)
+            pos = nx.spring_layout(self.scgraph.code_graph)
         if layout == 'spectral':
-            pos=nx.spectral_layout(self.scgraph.code_graph)
+            pos = nx.spectral_layout(self.scgraph.code_graph)
         if layout == 'planar':
-            pos=nx.planar_layout(self.scgraph.code_graph)
+            pos = nx.planar_layout(self.scgraph.code_graph)
         if layout == 'shell':
-            pos=nx.shell_layout(self.scgraph.code_graph)
+            pos = nx.shell_layout(self.scgraph.code_graph)
         if layout == 'circular':
-            pos=nx.circular_layout(self.scgraph.code_graph)
+            pos = nx.circular_layout(self.scgraph.code_graph)
         if layout == 'spiral':
-            pos=nx.spiral_layout(self.scgraph.code_graph)
+            pos = nx.spiral_layout(self.scgraph.code_graph)
         if layout == 'random':
-            pos=nx.random_layout(self.scgraph.code_graph)
+            pos = nx.random_layout(self.scgraph.code_graph)
         if node_type == 'cycles':
             self.scgraph.draw('cycles', layout)
         if node_type == 'dict':

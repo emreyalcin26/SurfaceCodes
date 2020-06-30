@@ -17,6 +17,8 @@ setuptools.setup(
         "networkx",
         "qiskit",
         "sympy",
+        "numpy",
+        "cirq",
     ],
     classifiers=[
         "Programming Language :: Python :: 3",
