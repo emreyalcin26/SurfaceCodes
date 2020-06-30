@@ -6,7 +6,7 @@ from src.surface_code_graph import SurfaceCodeGraph
 # from src.utilites import permlist_to_tuple
 
 
-class SurfaceCodeCircuit(QuantumCircuit):
+class QiskitSurfaceCodeCircuit(QuantumCircuit):
 
     def __init__(self, sigma: Tuple[Tuple[int]], alpha: Tuple[Tuple[int]]):
         super().__init__()
