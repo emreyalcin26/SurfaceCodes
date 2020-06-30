@@ -11,6 +11,19 @@ For an introduction on how to use this library see the following notebook:
 
 ## Current Capabilities 
 
+### Compatabilities
+This Package is compatable with the following quantum computing software libraries:
+
+- [IBM Qiskit](https://qiskit.org/)
+- [Google Cirq](https://cirq.readthedocs.io/en/stable/)
+
+We plan for future compatabilities with: 
+
+- [Rigetti Forest](https://rigetti.com/)
+- [Microsoft Q#](https://www.microsoft.com/en-us/quantum/development-kit)
+
+### Functionality
+
 This package implements general "*surface codes*" which 
 generalize A. Kitaev's toric code for quantum error 
 correction pictured below (see pg. 67 of [[1]](https://arxiv.org/pdf/1504.01444.pdf)). 
